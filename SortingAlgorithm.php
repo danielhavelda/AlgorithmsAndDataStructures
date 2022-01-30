@@ -1,20 +1,32 @@
 <?php
 
 class SortingAlgorithm {
-  private ?array $sortableArray = [];
+  private ?array $sortableArray;
+  private ?array $sortedArray;
 
   public function __construct(array $array)
   {
-    $this->sortableArray = $this->setArray($array);
+    $this->sortableArray = $this->setSortableArray($array);
   }
 
-  public function getArray(): array
+  public function getSortableArray(): array
   {
     return $this->sortableArray;
   }
 
-  public function setArray(array $array): void
+  public function setSortableArray(array $array): array
   {
     $this->sortableArray = $array;
+    return $this->sortableArray;
   }
+
+  public function getSortedArray(): array
+  {
+    return $this->sortedArray;
+  }
+
+  public function setSortedArray(array $array): void
+  {
+    $this->sortedArray = $array;
+  } 
 }

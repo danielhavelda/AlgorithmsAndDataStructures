@@ -1,7 +1,8 @@
 <?php
 include "./AlgorithmsAndDataStructures/SortingAlgorithm.php";
+include "./AlgorithmsAndDataStructures/SortingAlgorithmInterface.php";
 
-class InsertionSort extends SortingAlgorithm
+class InsertionSort extends SortingAlgorithm implements SortingAlgorithmInterface
 {
   public function __construct(array $input)
   {
@@ -10,7 +11,7 @@ class InsertionSort extends SortingAlgorithm
 
   public function sort(): array
   {
-    $sortableArr = $this->getArray();
+    $sortableArr = $this->getSortableArray();
     $sortableArrLength = count($sortableArr);
 
     for ($i = 0; $i < $sortableArrLength; $i++) {
@@ -27,7 +28,8 @@ class InsertionSort extends SortingAlgorithm
       }
     }
 
-    return $sortableArr;
+    $this->setSortedArray($sortableArr);
+    return $this->getSortedArray();
   }
 }
 
