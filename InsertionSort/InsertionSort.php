@@ -1,6 +1,6 @@
 <?php
-include "./AlgorithmsAndDataStructures/SortingAlgorithm.php";
-include "./AlgorithmsAndDataStructures/SortingAlgorithmInterface.php";
+include_once "./AlgorithmsAndDataStructures/SortingAlgorithm.php";
+include_once "./AlgorithmsAndDataStructures/SortingAlgorithmInterface.php";
 
 class InsertionSort extends SortingAlgorithm implements SortingAlgorithmInterface
 {
