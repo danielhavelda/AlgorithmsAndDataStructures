@@ -33,3 +33,16 @@ foglal helyet, és eme résznek az utolsó elemét - első nekifutáskor a 0. in
 hasonlítja össze a tömb többi elemével, egy kisebb értéket keresve. Ha talált a tömb
 bejárása közben egy kisebb elemet, annak indexét lementi egy változóba. Az ezután talált kisebb
 értékeknél a változót felülírja. A lista végighaladása után a mentett indexű elemet felcseréli a vizsgált elemmel.
+
+<br />
+
+---
+
+<br />
+
+## 04 - Merge Sort (Összefésülő rendezés)
+### Mi ez?
+Egy rendezési algoritmus, ami a "Divide and Conquer" - oszd meg és uralkodj - paradigmára épül. A paradigma
+az alábbi szerint jellemzi az algoritmus működését: az adott problémát rekurzívan bontsuk kisebb szeletekre - ezesetben
+a tömböt magát - addig, amíg elég egyszerűvé nem válik a megoldása - azaz az összehasonlítása a többi elemmel. 
+A kapott rész-megoldásokat végül kombináljuk.
