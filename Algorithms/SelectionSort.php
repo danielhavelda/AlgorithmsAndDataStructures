@@ -1,6 +1,6 @@
 <?php
-include_once "./AlgorithmsAndDataStructures/SortingAlgorithm.php";
-include_once "./AlgorithmsAndDataStructures/SortingAlgorithmInterface.php";
+include_once "./AlgorithmsAndDataStructures/Algorithms/SortingAlgorithm.php";
+include_once "./AlgorithmsAndDataStructures/Algorithms/SortingAlgorithmInterface.php";
 
 class SelectionSort extends SortingAlgorithm implements SortingAlgorithmInterface {
   public function __construct(array $input)
