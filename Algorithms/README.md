@@ -1,18 +1,12 @@
 # Algoritmusok
 
-## 01 - Insertion sort (beszúró rendezés)
-### Mi ez?
+## Insertion sort (Beszúró rendezés)
 Egy egyszerű rendezési algoritmus, mely a rendezést elemről-elemre hajtja végre.
 Ebből következően minél nagyobb a tömb mérete, annál kevésbé hatékony.
 
 <br/>
 
----
-
-<br />
-
-## 02 - Bubble sort (buborékrendezés)
-### Mi ez?
+## Bubble sort (Buborékrendezés)
 Egy olyan rendezési algoritmus, amely ismételten végigmegy az adott listán, összehasonlítja
 a szomszédos elemeket, és felcseréli őket, ha rossz sorrendben vannak. A lista átjárása
 annyiszor kezdődik újra, míg a lista rendezett nem lesz. Az ismétlődő bejárások során
@@ -21,12 +15,7 @@ bejárások során rendezve lettek.
 
 <br/>
 
----
-
-<br />
-
-## 03 - Selection Sort (kiválasztó rendezés)
-### Mi ez?
+## Selection Sort (Kiválasztó rendezés)
 Egy egyszerű rendezési algoritmus, mely két részre osztja a vizsgált
 tömböt: rendezettre és még nem rendezettre. A rendezett rész a tömb elején
 foglal helyet, és eme résznek az utolsó elemét - első nekifutáskor a 0. indexű elem - 
@@ -36,12 +25,7 @@ bejárása közben egy kisebb elemet, annak indexét lementi egy változóba. Az
 
 <br />
 
----
-
-<br />
-
-## 04 - Merge Sort (Összefésülő rendezés)
-### Mi ez?
+## Merge Sort (Összefésülő rendezés)
 Egy rendezési algoritmus, ami a "Divide and Conquer" - oszd meg és uralkodj - paradigmára épül. A paradigma
 az alábbi szerint jellemzi az algoritmus működését: az adott problémát rekurzívan bontsuk kisebb szeletekre - ezesetben
 a tömböt magát - addig, amíg elég egyszerűvé nem válik a megoldása - azaz az összehasonlítása a többi elemmel. 
