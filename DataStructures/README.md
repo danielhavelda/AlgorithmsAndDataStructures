@@ -17,3 +17,12 @@ ki kell emelnünk az adatszerkezetből. Implementálható array-ként, és Linke
 ## Queue (Sor)
 Olyan adatszerkezet, amelyben az elemek FIFO (First In, First Out) módon viselkednek, tehát az először hozzáadott elem kerül legelőször
 eltávolításra. Akárcsak a Stack, a Queue is implementálható array-ként, illetve Linked listként.
+
+<br />
+
+## Binary Search Tree (Bináris Keresőfa)
+Adat szerkezet, melynek legelső eleméhez, a gyökérelemhez viszonyul az összes többi tárolt elem, az alábbi módon: a gyökérelemnél kisebb értékek
+mind a gyökérelemtől balra helyezkednek el a fában, a nagyobb elemek pedig jobbra. Akárcsak a Láncolt listáknál, úgy a Bináris keresőfáknál is
+meglehet oldani a Node-ok közötti összekötést oda-vissza pointerekkel, ahol nem csak a Parent Node-ok mutatnak rá a következő (child) Node-ra,
+de ezen Node-ok is rámutatnak egy pointerrel a saját szülőjükre.   
+A különböző kiegyensúlyozó algoritmusokkal kiegészítve - lsd.: AVL-fa, piros-fekete fa - a tárolás hatékony adatszerkezetét kapjuk. 
