@@ -187,20 +187,38 @@ class BinarySearchTree {
   // WIP
   // Az elemek bejárása az alábbi sorrend szerint:
   // leftTree --> rootNode --> rightTree
-  public function traverseInOrder()
-  {}
+  public function printInOrder(?Node $node)
+  {
+    if ($node === null) return;
+
+    $this->printInOrder($node->leftChildren);
+    echo $node->getData()."\n\n";
+    $this->printInOrder($node->rightChildren);
+  }
 
   // WIP
   // Az elemek bejárása az alábbi sorrend szerint:
   // rootNode --> leftTree --> rightTree
-  public function traversePreOrder()
-  {}
+  public function printPreOrder(?Node $node)
+  {
+    if ($node === null) return;
+
+    echo $node->getData()."\n\n";
+    $this->printPreOrder($node->leftChildren);
+    $this->printPreOrder($node->rightChildren);
+  }
 
   // WIP
   // Az elemek bejárása az alábbi sorrend szerint: 
   // leftTree --> rightTree --> rootNode
-  public function traversePostOrder()
-  {}
+  public function printPostOrder(?Node $node)
+  {
+    if ($node === null) return;
+
+    $this->printPostOrder($node->leftChildren);
+    $this->printPostOrder($node->rightChildren);
+    echo $node->getData()."\n\n";
+  }
 
   public function getRootNode(): ?Node
   {
