@@ -1,20 +1,29 @@
 <?php
 
 class Node {
-  private int $data;
+  private ?int $data;
   public ?Node $leftChildren;
   public ?Node $rightChildren;
 
-  public function __construct(int $data, ?Node $leftChildren = null, ?Node $rightChildren = null)
+  public function __construct(?int $data)
   {
     $this->data = $data;
-    $this->leftChildren = $leftChildren;
-    $this->rightChildren = $rightChildren;
+    $this->leftChildren = $this->rightChildren = null;
   }
 
   public function getData()
   {
     return $this->data;
+  }
+
+  public function setData(?int $data)
+  {
+    $this->data = $data;
+  }
+
+  public function isLeaf(): bool
+  {
+    return $this->leftChildren === null && $this->rightChildren === null;
   }
 }
 
@@ -77,7 +86,9 @@ class BinarySearchTree {
   // nem talál egy null értéket. 
   private function insertFromNode(int $data, ?Node $node): null | bool
   {
-    if ($node === null) return null;
+    if ($node === null) {
+      return null;
+    }
 
     switch(true) {
       // Ha a vizsgált elemnél nagyobb a keresett érték, akkor
@@ -114,10 +125,64 @@ class BinarySearchTree {
     return $this->insertFromNode($data, $this->getRootNode());
   }
 
-  // WIP
-  // Rekurzív elem törlése a meglévő BST-ből.
-  public function remove()
-  {}
+  // Az adott node-tól indulva végighaladunk annak leftChildren-jein mindaddig, míg el 
+  // jutunk a legkisebb Node-ig, melynek már nincs leftChildren-je.
+  public function getMinNodeValue(Node $node): Node
+  {
+    while ($node->leftChildren !== null) {
+      $node = $node->leftChildren;
+    }
+
+    return $node;
+  }
+
+  // Rekurzív elem törlése a meglévő BST-ből
+  public function removeRecursively(int $data, Node $node): ?Node
+  {
+    if ($node === null) {
+      return $node;
+      // Ha a törlendő érték kisebb, mint a megadott Node értéke, a baloldali fán indulunk el rekurzívan
+    } else if ($data < $node->getData()) {
+      $node->leftChildren = $this->removeRecursively($data, $node->leftChildren);
+      // Ha a törlendő érték nagyobb, mint a megadott Node értéke, a jobboldali fán indulunk el rekurzívan
+    } else if ($data > $node->getData()) {
+      $node->rightChildren = $this->removeRecursively($data, $node->rightChildren);
+    } else {
+      // Ha a keresett Node-ot megtaláltuk, akkor kezdődik a vizsgálat, mely alapján
+      // az algo eldönti miként törölje az adott Node-ot.
+      // A vizsgálatnak három kimenetele lehet, annak függvényében, hogy a talált Node-ra mely állítás igaz:
+      
+      // 1) Leaf Node (nem rendelkezik se leftChildren-el, se rightChildren-el). Ebben az esetben a node-ot
+      // nyugodtan lehet törölni, lévén, nincsenek child Node-jai, melyek elvesznének a törlés következtében.
+      if ($node->leftChildren === null && $node->rightChildren === null) {
+        $node = null;
+      // 2) Egy gyermeke van a Node-nak. Ebben az esetben a meglévő gyermeket illesztjük a törlendő helyére,
+      // ezzel nem csak az értékét átemelve, de a további elemekre mutató (leftChildren, rightChildren) "pointereket"
+      // is - PHP-ben nincs pointer -, így elkerülve a child Node-ok elvesztését.
+      } else if ($node->leftChildren === null) {
+        $node = $node->rightChildren;
+      } else if ($node->rightChildren === null) {
+        $node = $node->leftChildren;
+      // 3) Két gyermeke van a Node-nak. Ebben az esetben a vizsgált Node nagyobb gyermekétől(!) indulva megkeressük
+      // a legkisebb található értéket - azt, aminek már nincs további leftChildrenje -, és beillesztjük a törlendő elem helyére, 
+      // saját subtree-jével együtt.
+      // Ezután az átemelt Node-ot töröljük rekurzívan.
+      } else {
+        $minNode = $this->getMinNodeValue($node->rightChildren);
+        $node->setData($minNode->getData());
+        $node->rightChildren = $this->removeRecursively($minNode->getData(), $node->rightChildren);
+      }
+
+    }
+
+    return $node;
+  }
+
+  // rootNode-tól való vizsgálás, és törlés
+  public function remove(int $data): Node
+  {
+    return $this->removeRecursively($data, $this->getRootNode());
+  }
 
   // WIP
   // Az elemek bejárása az alábbi sorrend szerint:
